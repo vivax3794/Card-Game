@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://hand/hand.tscn" type="PackedScene" id=2]
+
+[node name="Main" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [  ]
+}
+
+[node name="hand" parent="." instance=ExtResource( 2 )]
+position = Vector2( -1764.67, 584.43 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 3.5, 3.5 )

@@ -1,0 +1,64 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://card/card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://deck/deck.gd" type="Script" id=2]
+
+[node name="deck" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="cards" type="Node2D" parent="."]
+
+[node name="zombie" parent="cards" instance=ExtResource( 1 )]
+card_title = "Zombie"
+range_end = 4
+description = "I want brains!"
+
+[node name="skeleton" parent="cards" instance=ExtResource( 1 )]
+base_health = 3
+base_dmg = 2
+card_title = "Skelton"
+range_start = 1
+range_end = 3
+description = "I drink milk!"
+
+[node name="ghost" parent="cards" instance=ExtResource( 1 )]
+base_health = 1
+base_dmg = 0
+card_title = "Ghost"
+range_end = 3
+effect_text = "<EEC>: +2
+<EC>: +1"
+description = "I am scary!"
+EC = 1
+EEC = 2
+
+[node name="calm girl" parent="cards" instance=ExtResource( 1 )]
+base_health = 4
+card_title = "Calm Girl"
+range_start = 4
+range_end = 9
+effect_text = "<EC>: -2"
+description = "just chilling"
+EC = -2
+
+[node name="rock" parent="cards" instance=ExtResource( 1 )]
+base_health = 5
+base_dmg = 2
+card_title = "Rock"
+range_end = 4
+effect_text = "<Brave>, <Heavy>"
+description = "just a normal rock"
+brave = true
+heavy = true
+
+[node name="cifer" parent="cards" instance=ExtResource( 1 )]
+base_health = 1
+base_dmg = 5
+card_title = "Cifer"
+range_start = 2
+range_end = 7
+effect_text = "<swift>
+<EC>: +3"
+description = "STRONG BOI"
+EC = 3
+swift = true

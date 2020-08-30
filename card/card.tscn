@@ -1,0 +1,131 @@
+[gd_scene load_steps=12 format=2]
+
+[ext_resource path="res://card/card_sprite.gd" type="Script" id=1]
+[ext_resource path="res://font/title.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/heart.svg" type="Texture" id=3]
+[ext_resource path="res://assets/sword.svg" type="Texture" id=4]
+[ext_resource path="res://card/card.gd" type="Script" id=5]
+[ext_resource path="res://font/effect.tres" type="DynamicFont" id=6]
+[ext_resource path="res://font/stats.tres" type="DynamicFont" id=7]
+[ext_resource path="res://card/zoom animation.tres" type="Animation" id=8]
+[ext_resource path="res://card/cardKilled.tres" type="Animation" id=9]
+[ext_resource path="res://font/description.tres" type="DynamicFont" id=10]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 175, 225 )
+
+[node name="card" type="KinematicBody2D"]
+input_pickable = true
+script = ExtResource( 5 )
+base_health = 2
+base_dmg = 1
+highligthed = Color( 0, 0.164706, 0.427451, 1 )
+asleep_background = Color( 0.431373, 0.0470588, 0.0470588, 1 )
+
+[node name="sprite" type="Node2D" parent="."]
+script = ExtResource( 1 )
+card_title = "Place Holder"
+effect_text = "Place Holder Text"
+CardNodePath = NodePath("..")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="sprite"]
+anims/Killed = ExtResource( 9 )
+"anims/zoom in" = ExtResource( 8 )
+
+[node name="background" type="Polygon2D" parent="sprite"]
+position = Vector2( 0, -0.00338745 )
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 350, 0, 350, 450, 0, 450 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="title" type="Label" parent="sprite"]
+margin_left = 10.0
+margin_top = 4.0
+margin_right = 347.0
+margin_bottom = 115.0
+custom_fonts/font = ExtResource( 2 )
+text = "Place Holder (0-0)"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="health" type="Node2D" parent="sprite"]
+position = Vector2( 319.902, 426.834 )
+
+[node name="icon" type="Sprite" parent="sprite/health"]
+position = Vector2( -27.3291, -26.0677 )
+scale = Vector2( 0.202893, 0.18086 )
+texture = ExtResource( 3 )
+
+[node name="value" type="Label" parent="sprite/health"]
+margin_left = -47.4767
+margin_top = -64.522
+margin_right = -7.47675
+margin_bottom = 9.47797
+rect_pivot_offset = Vector2( 8.5, 19 )
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="attack" type="Node2D" parent="sprite"]
+position = Vector2( 26.268, 424.441 )
+
+[node name="icon" type="Sprite" parent="sprite/attack"]
+position = Vector2( 26.9653, -23.5668 )
+scale = Vector2( 0.187347, 0.172621 )
+texture = ExtResource( 4 )
+
+[node name="value" type="Label" parent="sprite/attack"]
+margin_left = 80.0966
+margin_top = -55.6895
+margin_right = 135.097
+margin_bottom = 6.31048
+rect_pivot_offset = Vector2( 27.5, 19 )
+custom_fonts/font = ExtResource( 7 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="description" type="Label" parent="sprite"]
+margin_left = 13.0
+margin_top = 116.0
+margin_right = 340.0
+margin_bottom = 157.0
+custom_fonts/font = ExtResource( 10 )
+text = "place holder"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="card text" type="RichTextLabel" parent="sprite"]
+margin_left = 11.0
+margin_top = 161.0
+margin_right = 340.0
+margin_bottom = 346.0
+mouse_filter = 2
+custom_fonts/normal_font = ExtResource( 6 )
+bbcode_enabled = true
+bbcode_text = "Place [color=yellow]Holder[/color]"
+text = "Place Holder"
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( 175, 225 )
+rotation = 4.46638e-06
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+[connection signal="mouse_entered" from="." to="sprite" method="_on_card_mouse_entered"]
+[connection signal="mouse_exited" from="." to="sprite" method="_on_card_mouse_exited"]

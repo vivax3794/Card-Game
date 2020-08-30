@@ -1,0 +1,68 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://card/card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[node name="world" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 3.5, 3.5 )
+
+[node name="card" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1015.9, 565.22 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card2" parent="." instance=ExtResource( 1 )]
+position = Vector2( 640.475, -1029.48 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card3" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1041.23, -1029.11 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card4" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1421.8, -1026.11 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card5" parent="." instance=ExtResource( 1 )]
+position = Vector2( -154.679, -663.609 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card6" parent="." instance=ExtResource( 1 )]
+position = Vector2( 124.039, 45.0364 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card7" parent="." instance=ExtResource( 1 )]
+position = Vector2( -443.157, 45.507 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card8" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1393.12, 565.598 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="card9" parent="." instance=ExtResource( 1 )]
+position = Vector2( -1757.63, 565.042 )
+card_title = "Test"
+effect_text = "Some Text that should be possible to read
+"
+
+[node name="icon" type="Sprite" parent="."]
+position = Vector2( -1263.08, -64.3716 )
+texture = ExtResource( 2 )

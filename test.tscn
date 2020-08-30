@@ -1,0 +1,7 @@
+[gd_scene format=2]
+
+[node name="test" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 3.5, 3.5 )

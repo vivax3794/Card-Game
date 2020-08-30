@@ -1,0 +1,114 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://deck/deck.tscn" type="PackedScene" id=1]
+[ext_resource path="res://hand/hand.tscn" type="PackedScene" id=2]
+[ext_resource path="res://field/field.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/game.gd" type="Script" id=4]
+[ext_resource path="res://font/button.tres" type="DynamicFont" id=5]
+[ext_resource path="res://game/crowd_counter.gd" type="Script" id=6]
+[ext_resource path="res://assets/crowd.svg" type="Texture" id=7]
+
+[node name="game" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="end round button" type="Button" parent="."]
+margin_left = 1300.0
+margin_top = 600.0
+margin_right = 1861.0
+margin_bottom = 1060.0
+custom_fonts/font = ExtResource( 5 )
+text = "End Round"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+zoom = Vector2( 4, 4 )
+
+[node name="player-1" type="Node2D" parent="."]
+
+[node name="hand" parent="player-1" instance=ExtResource( 2 )]
+position = Vector2( -1800, 500 )
+player = 1
+DeckPath = NodePath("../deck")
+FieldPath = NodePath("../field")
+GamePath = NodePath("../..")
+
+[node name="field" parent="player-1" instance=ExtResource( 3 )]
+position = Vector2( -1800, 0 )
+player = 1
+HandPath = NodePath("../../../game/player-1/hand")
+EnemyFieldPath = NodePath("../../../game/player-2/field")
+GamePath = NodePath("../..")
+DeckPath = NodePath("../deck")
+
+[node name="deck" parent="player-1" instance=ExtResource( 1 )]
+visible = false
+
+[node name="counter" type="Node2D" parent="player-1"]
+position = Vector2( -1900, 400 )
+script = ExtResource( 6 )
+FieldPath = NodePath("../field")
+
+[node name="Sprite" type="Sprite" parent="player-1/counter"]
+position = Vector2( -28.9624, 57.1459 )
+scale = Vector2( 0.288435, 0.252066 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="player-1/counter"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="player-2" type="Node2D" parent="."]
+position = Vector2( 4.23779, 8.47571 )
+
+[node name="hand" parent="player-2" instance=ExtResource( 2 )]
+position = Vector2( -1804.24, -1008.48 )
+player = 2
+DeckPath = NodePath("../deck")
+FieldPath = NodePath("../field")
+GamePath = NodePath("../..")
+
+[node name="field" parent="player-2" instance=ExtResource( 3 )]
+position = Vector2( -1804.24, -508.476 )
+player = 2
+HandPath = NodePath("../../../game/player-2/hand")
+EnemyFieldPath = NodePath("../../../game/player-1/field")
+GamePath = NodePath("../..")
+DeckPath = NodePath("../deck")
+
+[node name="deck" parent="player-2" instance=ExtResource( 1 )]
+visible = false
+
+[node name="counter" type="Node2D" parent="player-2"]
+position = Vector2( -1904.24, -1108.48 )
+script = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
+FieldPath = NodePath("../field")
+
+[node name="Sprite" type="Sprite" parent="player-2/counter"]
+position = Vector2( -28.962, 57.146 )
+scale = Vector2( 0.288, 0.288 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="player-2/counter"]
+margin_right = 40.0
+margin_bottom = 14.0
+custom_fonts/font = ExtResource( 5 )
+text = "0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="turn_switch" from="." to="player-1/field" method="_on_game_turn_switch"]
+[connection signal="turn_switch" from="." to="player-1/hand" method="_on_game_turn_switch"]
+[connection signal="turn_switch" from="." to="player-2/hand" method="_on_game_turn_switch"]
+[connection signal="turn_switch" from="." to="player-2/field" method="_on_game_turn_switch"]
+[connection signal="pressed" from="end round button" to="." method="_on_end_round_button_pressed"]
