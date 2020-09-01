@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://deck/deck.tscn" type="PackedScene" id=1]
 [ext_resource path="res://hand/hand.tscn" type="PackedScene" id=2]
@@ -7,6 +7,14 @@
 [ext_resource path="res://font/button.tres" type="DynamicFont" id=5]
 [ext_resource path="res://game/crowd_counter.gd" type="Script" id=6]
 [ext_resource path="res://assets/crowd.svg" type="Texture" id=7]
+[ext_resource path="res://game/end round button.gd" type="Script" id=8]
+
+[sub_resource type="InputEventKey" id=1]
+pressed = true
+scancode = 101
+
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="game" type="Node2D"]
 script = ExtResource( 4 )
@@ -17,10 +25,14 @@ margin_top = 600.0
 margin_right = 1861.0
 margin_bottom = 1060.0
 custom_fonts/font = ExtResource( 5 )
+shortcut = SubResource( 2 )
 text = "End Round"
+script = ExtResource( 8 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+player1_pos = Vector2( 1300, 600 )
+player2_pos = Vector2( 1300, -1100 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -112,3 +124,4 @@ __meta__ = {
 [connection signal="turn_switch" from="." to="player-2/hand" method="_on_game_turn_switch"]
 [connection signal="turn_switch" from="." to="player-2/field" method="_on_game_turn_switch"]
 [connection signal="pressed" from="end round button" to="." method="_on_end_round_button_pressed"]
+[connection signal="pressed" from="end round button" to="end round button" method="_on_end_round_button_pressed"]
